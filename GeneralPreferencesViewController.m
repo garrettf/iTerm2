@@ -75,6 +75,9 @@
 
     // Lion-style fullscreen
     IBOutlet NSButton *_lionStyleFullscreen;
+    
+    // Borderless window style
+    IBOutlet NSButton *_borderlessWindowStyle;
 
     // Open tmux windows in [windows, tabs]
     IBOutlet NSPopUpButton *_openTmuxWindows;
@@ -201,6 +204,10 @@
     
     [self defineControl:_lionStyleFullscreen
                     key:kPreferenceKeyLionStyleFullscren
+                   type:kPreferenceInfoTypeCheckbox];
+    
+    [self defineControl:_borderlessWindowStyle
+                    key:kPreferenceKeyBorderlessWindowStyle
                    type:kPreferenceInfoTypeCheckbox];
     
     info = [self defineControl:_openTmuxWindows

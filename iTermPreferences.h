@@ -64,6 +64,7 @@ extern NSString *const kPreferenceKeySmartWindowPlacement;
 extern NSString *const kPreferenceKeyAdjustWindowForFontSizeChange;
 extern NSString *const kPreferenceKeyMaximizeVerticallyOnly;
 extern NSString *const kPreferenceKeyLionStyleFullscren;
+extern NSString *const kPreferenceKeyBorderlessWindowStyle;
 extern NSString *const kPreferenceKeyOpenTmuxWindowsIn;
 extern NSString *const kPreferenceKeyTmuxDashboardLimit;
 extern NSString *const kPreferenceKeyAutoHideTmuxClientSession;

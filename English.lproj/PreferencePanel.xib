@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencePanel">
@@ -436,7 +436,7 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="6331">
-                                            <rect key="frame" x="431" y="163" width="118" height="17"/>
+                                            <rect key="frame" x="431" y="134" width="118" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="tmux Integration" id="6332">
                                                 <font key="font" metaFont="systemBold"/>
@@ -557,11 +557,22 @@ Gw
                                             </buttonCell>
                                             <connections>
                                                 <action selector="settingChanged:" target="9Se-ld-UJa" id="fot-6n-Z9m"/>
-                                                <outlet property="nextKeyView" destination="6337" id="age-Bh-isX"/>
+                                            </connections>
+                                        </button>
+                                        <button id="EHt-cv-U9Q">
+                                            <rect key="frame" x="432" y="166" width="145" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <buttonCell key="cell" type="check" title="Borderless windows" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="6Bh-wI-c9n">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="settingChanged:" target="9Se-ld-UJa" id="trW-MH-M9s"/>
+                                                <outlet property="nextKeyView" destination="6337" id="tOb-oX-Bee"/>
                                             </connections>
                                         </button>
                                         <button id="6366">
-                                            <rect key="frame" x="432" y="86" width="398" height="18"/>
+                                            <rect key="frame" x="432" y="57" width="398" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <buttonCell key="cell" type="check" title="Automatically hide the tmux client session after connecting" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="6367">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -761,7 +772,7 @@ Gw
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Warning" id="5629"/>
                                         </imageView>
                                         <textField verticalHuggingPriority="750" id="6335">
-                                            <rect key="frame" x="431" y="140" width="307" height="17"/>
+                                            <rect key="frame" x="431" y="111" width="307" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="When attaching, open unrecognized windows in" id="6336">
                                                 <font key="font" metaFont="system"/>
@@ -770,7 +781,7 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" id="6337">
-                                            <rect key="frame" x="740" y="134" width="89" height="26"/>
+                                            <rect key="frame" x="740" y="105" width="89" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="Tabs" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="6341" id="6338">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -787,7 +798,7 @@ Gw
                                             </connections>
                                         </popUpButton>
                                         <textField verticalHuggingPriority="750" id="6343">
-                                            <rect key="frame" x="431" y="112" width="252" height="17"/>
+                                            <rect key="frame" x="431" y="83" width="252" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Open dashboard if there are more than" id="6344">
                                                 <font key="font" metaFont="system"/>
@@ -796,7 +807,7 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="6347">
-                                            <rect key="frame" x="727" y="112" width="252" height="17"/>
+                                            <rect key="frame" x="727" y="83" width="252" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="tmux windows" id="6348">
                                                 <font key="font" metaFont="system"/>
@@ -805,7 +816,7 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="6345">
-                                            <rect key="frame" x="686" y="110" width="36" height="22"/>
+                                            <rect key="frame" x="686" y="81" width="36" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6346">
                                                 <font key="font" metaFont="system"/>
@@ -3928,7 +3939,7 @@ Gw
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="6206" id="6091">
-                                                        <rect key="frame" x="0.0" y="0.0" width="849" height="228"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="849" height="229"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4957,6 +4968,7 @@ DQ
                 <outlet property="_adjustWindowForFontSizeChange" destination="6377" id="8Ci-Ia-xoQ"/>
                 <outlet property="_allowClipboardAccessFromTerminal" destination="6383" id="u1Z-Xo-qFM"/>
                 <outlet property="_autoHideTmuxClientSession" destination="6366" id="V9B-um-JRL"/>
+                <outlet property="_borderlessWindowStyle" destination="EHt-cv-U9Q" id="LB4-C7-QlJ"/>
                 <outlet property="_browseCustomFolder" destination="5618" id="0Ty-gp-K5Q"/>
                 <outlet property="_checkTestRelease" destination="5049" id="mCk-NA-PO2"/>
                 <outlet property="_checkUpdate" destination="5048" id="Oi0-3Y-fu1"/>

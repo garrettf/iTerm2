@@ -487,6 +487,9 @@ NSString *kSessionsKVCKey = @"sessions";
             break;
 
         default:
+            if ([iTermPreferences boolForKey:kPreferenceKeyBorderlessWindowStyle]) {
+                styleMask = NSBorderlessWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
+            }
             break;
     }
 
