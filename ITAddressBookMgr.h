@@ -197,7 +197,10 @@ typedef enum {
     WINDOW_TYPE_BOTTOM_PARTIAL = 8,
     WINDOW_TYPE_TOP_PARTIAL = 9,
     WINDOW_TYPE_LEFT_PARTIAL = 10,
-    WINDOW_TYPE_RIGHT_PARTIAL = 11
+    WINDOW_TYPE_RIGHT_PARTIAL = 11,
+
+    // These hide the title bar
+    WINDOW_TYPE_BORDERLESS = 12
 } iTermWindowType;
 
 typedef enum {

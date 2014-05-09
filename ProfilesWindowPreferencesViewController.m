@@ -221,7 +221,7 @@
     } else {
         [_screen selectItemWithTag:-1];
     }
-    if ([_windowStyle selectedTag] == WINDOW_TYPE_NORMAL) {
+    if ([_windowStyle selectedTag] == WINDOW_TYPE_NORMAL || [_windowStyle selectedTag] == WINDOW_TYPE_BORDERLESS) {
         [_screen setEnabled:NO];
         [_screenLabel setEnabled:NO];
         [_screen selectItemWithTag:-1];

@@ -420,6 +420,8 @@ NSString *kSessionsKVCKey = @"sessions";
             NSLog(@"Unknown window type: %d", (int)windowType);
             // fall through
         case WINDOW_TYPE_NORMAL:
+            // fall through
+        case WINDOW_TYPE_BORDERLESS:
             haveScreenPreference_ = NO;
             // fall through
         case WINDOW_TYPE_LION_FULL_SCREEN:
@@ -485,7 +487,9 @@ NSString *kSessionsKVCKey = @"sessions";
         case WINDOW_TYPE_TRADITIONAL_FULL_SCREEN:
             styleMask = NSBorderlessWindowMask;
             break;
-
+        case WINDOW_TYPE_BORDERLESS:
+            styleMask = NSBorderlessWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
+            break;
         default:
             break;
     }
@@ -762,7 +766,7 @@ NSString *kSessionsKVCKey = @"sessions";
 - (void)_updateDrawerVisibility:(id)sender
 {
     iTermApplicationDelegate *itad = (iTermApplicationDelegate *)[[iTermApplication sharedApplication] delegate];
-    if (windowType_ != WINDOW_TYPE_NORMAL || [self anyFullScreen]) {
+    if ((windowType_ != WINDOW_TYPE_NORMAL && windowType_ != WINDOW_TYPE_BORDERLESS ) || [self anyFullScreen]) {
         if ([itad showToolbelt]) {
             [toolbelt_ setHidden:NO];
         } else {
@@ -791,7 +795,7 @@ NSString *kSessionsKVCKey = @"sessions";
     PseudoTerminal *term;
 
     int screen;
-    if (windowType_ != WINDOW_TYPE_NORMAL) {
+    if (windowType_ != WINDOW_TYPE_NORMAL && windowType_ != WINDOW_TYPE_BORDERLESS) {
         screen = [self _screenAtPoint:point];
     } else {
         screen = -1;
@@ -830,7 +834,7 @@ NSString *kSessionsKVCKey = @"sessions";
 
     [[iTermController sharedInstance] addInTerminals:term];
 
-    if (newWindowType == WINDOW_TYPE_NORMAL) {
+    if (newWindowType == WINDOW_TYPE_NORMAL || newWindowType == WINDOW_TYPE_BORDERLESS) {
         [[term window] setFrameOrigin:point];
     } else if (newWindowType == WINDOW_TYPE_TRADITIONAL_FULL_SCREEN) {
         [[term window] makeKeyAndOrderFront:nil];
@@ -1447,6 +1451,8 @@ NSString *kSessionsKVCKey = @"sessions";
             break;
             
         case WINDOW_TYPE_NORMAL:
+            // fall through
+        case WINDOW_TYPE_BORDERLESS:
             rect.origin.x = xOrigin + xScale * [[terminalArrangement objectForKey:TERMINAL_ARRANGEMENT_X_ORIGIN] doubleValue];
             double h = [[terminalArrangement objectForKey:TERMINAL_ARRANGEMENT_HEIGHT] doubleValue];
             double y = [[terminalArrangement objectForKey:TERMINAL_ARRANGEMENT_Y_ORIGIN] doubleValue];
@@ -1747,7 +1753,7 @@ NSString *kSessionsKVCKey = @"sessions";
         [PTYTab openTabWithArrangement:tabArrangement inTerminal:self hasFlexibleView:NO];
     }
     int windowType = [PseudoTerminal _windowTypeForArrangement:arrangement];
-    if (windowType == WINDOW_TYPE_NORMAL) {
+    if (windowType == WINDOW_TYPE_NORMAL || windowType == WINDOW_TYPE_BORDERLESS) {
         // The window may have changed size while adding tab bars, etc.
         NSRect rect;
         rect.origin.x = [[arrangement objectForKey:TERMINAL_ARRANGEMENT_X_ORIGIN] doubleValue];
@@ -2260,6 +2266,8 @@ NSString *kSessionsKVCKey = @"sessions";
                 break;
             }
             // fall through
+        case WINDOW_TYPE_BORDERLESS:
+            PtyLog(@"Window type = BORDERLESS");
         case WINDOW_TYPE_LION_FULL_SCREEN:
             PtyLog(@"Window type = LION");
         case WINDOW_TYPE_TRADITIONAL_FULL_SCREEN:
@@ -2820,6 +2828,11 @@ NSString *kSessionsKVCKey = @"sessions";
             return NSBorderlessWindowMask;
             
         case WINDOW_TYPE_LION_FULL_SCREEN:
+        case WINDOW_TYPE_BORDERLESS:
+            return (NSBorderlessWindowMask |
+                    NSClosableWindowMask |
+                    NSMiniaturizableWindowMask |
+                    NSResizableWindowMask);
         case WINDOW_TYPE_NORMAL:
         default:
             return (NSTitledWindowMask |
@@ -3143,6 +3156,7 @@ NSString *kSessionsKVCKey = @"sessions";
     [self _updateToolbeltParentage];
     // TODO this is only ok because top, bottom, and non-lion fullscreen windows
     // can't become lion fullscreen windows:
+    // NOTE this isn't true: borderless windows can become lion fullscreen windows.
     windowType_ = WINDOW_TYPE_NORMAL;
     for (PTYTab *aTab in [self tabs]) {
         [aTab notifyWindowChanged];
@@ -3784,7 +3798,7 @@ NSString *kSessionsKVCKey = @"sessions";
 
     NSWindowController<iTermWindowController> * term =
         [self terminalDraggedFromAnotherWindowAtPoint:point];
-    if ([term windowType] == WINDOW_TYPE_NORMAL &&
+    if (([term windowType] == WINDOW_TYPE_NORMAL || [term windowType] == WINDOW_TYPE_BORDERLESS) &&
         [iTermPreferences intForKey:kPreferenceKeyTabPosition] == PSMTab_TopTab) {
             [[term window] setFrameTopLeftPoint:point];
     }
@@ -5722,7 +5736,7 @@ NSString *kSessionsKVCKey = @"sessions";
     }
     PtyLog(@"safelySetSessionSize");
     BOOL hasScrollbar = [self scrollbarShouldBeVisible];
-    if (windowType_ == WINDOW_TYPE_NORMAL) {
+    if (windowType_ == WINDOW_TYPE_NORMAL || windowType_ == WINDOW_TYPE_BORDERLESS) {
         int width = columns;
         int height = rows;
         if (width < 20) {

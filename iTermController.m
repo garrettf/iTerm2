@@ -1006,7 +1006,7 @@ static BOOL initDone = NO;
     [iTermController switchToSpaceInBookmark:bookmark];
     PseudoTerminal *term;
     term = [[[PseudoTerminal alloc] initWithSmartLayout:YES
-                                             windowType:WINDOW_TYPE_NORMAL
+                                             windowType:[bookmark objectForKey:KEY_WINDOW_TYPE] ? [[bookmark objectForKey:KEY_WINDOW_TYPE] intValue] : WINDOW_TYPE_NORMAL
                                                  screen:[bookmark objectForKey:KEY_SCREEN] ? [[bookmark objectForKey:KEY_SCREEN] intValue] : -1
                                                isHotkey:NO] autorelease];
     if ([[bookmark objectForKey:KEY_HIDE_AFTER_OPENING] boolValue]) {
